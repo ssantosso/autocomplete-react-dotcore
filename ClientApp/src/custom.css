@@ -33,11 +33,18 @@ input {
     overflow-y: auto;
     padding-left: 0;
     width: calc(300px + 1rem);
+    position: absolute;
+    background: white;
+    margin-left: 4.2%;
+    margin-top: -4%;
+    width: 94%;
 }
-
-    .suggestions li {
-        padding: 0.5rem;
-    }
+.margin-top{
+    margin-top:1.8%
+}
+.suggestions li {
+    padding: 0.5rem;
+}
 
         .suggestion-active,
         .suggestions li:hover {

@@ -71,7 +71,7 @@ class Autocomplete extends Component {
         if (showSuggestions && userInput) {
             if (filteredSuggestions.length) {
                 suggestionsListComponent = (
-                    <ul class="suggestions">
+                    <ul className="suggestions">
                         {filteredSuggestions.map((suggestion, index) => {
                             let className;
 
@@ -89,7 +89,7 @@ class Autocomplete extends Component {
                 );
             } else {
                 suggestionsListComponent = (
-                    <div class="no-suggestions">
+                    <div className="no-suggestions">
                         <em>No suggestions available.</em>
                     </div>
                 );
@@ -97,15 +97,19 @@ class Autocomplete extends Component {
         }
         return (
             <Fragment>
-                <div className="">
+                <div className="col-md-5 col-xs-12 col-lg-5 col-sm-8 form-group has-feedback">
+
                     <input
+                        id="autocompleteFilter"
                         type="text"
                         style={{ margin: 20 }}
                         onChange={onChange}
                         onKeyDown={onKeyDown}
                         value={userInput}
+                        className="form-control"
+                        placeholder="please write the city you are looking for"
                     />
-                    
+
 
                     {suggestionsListComponent}
                 </div>
