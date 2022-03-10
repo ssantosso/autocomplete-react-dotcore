@@ -39,7 +39,7 @@ namespace Autocomplete.Business.Service
                         )
                     .OrderBy(x => x.name)
 
-                .ToList().Take(50).ToList());
+                .Take(50).ToList());
 
             return list;
         }
