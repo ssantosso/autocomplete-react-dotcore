@@ -19,7 +19,7 @@ namespace Autocomplete.Business.Repository
 
             var list = await Task.Factory.StartNew(() => files.Select(x => new City(x))
                     .Where(x =>
-                            x.IsOk() 
+                            x!=null&&x.IsOk() 
                         )
                     .OrderBy(x => x.original)
 
@@ -35,7 +35,7 @@ namespace Autocomplete.Business.Repository
 
             var list = await Task.Factory.StartNew(() => files.Select(x => new City(x))
                     .Where(x =>
-                            x.IsOk() && (string.IsNullOrEmpty(filtro?.Filtro?.Trim()) || x.original.ToLower().Contains(filtro.Filtro?.ToLower()))
+                            (string.IsNullOrEmpty(filtro?.Filtro?.Trim()) && x.IsOk()) || (x.original.ToLower().Contains(filtro.Filtro?.ToLower())&&x.IsOk())
                         )
                     .OrderBy(x => x.original)
 
