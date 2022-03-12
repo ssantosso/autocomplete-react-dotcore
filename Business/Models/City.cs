@@ -35,13 +35,13 @@ namespace Autocomplete.Business.Models
 
         public bool IsOk()
         {
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name.Trim()))
                 return false;
-            if (string.IsNullOrEmpty(country))
+            if (string.IsNullOrEmpty(country.Trim()))
                 return false;
-            if (string.IsNullOrEmpty(subcountry))
+            if (string.IsNullOrEmpty(subcountry.Trim()))
                 return false;
-            if (string.IsNullOrEmpty(geonameid))
+            if (string.IsNullOrEmpty(geonameid.Trim()))
                 return false;
             return true;
         }
