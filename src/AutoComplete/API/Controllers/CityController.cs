@@ -26,7 +26,7 @@ namespace Autocomplete.Controllers
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            var result = _mapper.Map<IEnumerable<CityViewModel>>(await _repo.ObterEnderecoPorCidadeAsync(new FiltroViewModel()));
+            var result = _mapper.Map<IEnumerable<CityViewModel>>(await _repo.GetCityByFilterAsync(new FiltroViewModel()));
 
             return CustomResponse(result);
         }
@@ -35,7 +35,7 @@ namespace Autocomplete.Controllers
         public async Task<ActionResult> ObterPorFiltro([FromQuery] string filtro)
         {
 
-            var citys = _mapper.Map<IEnumerable<CityViewModel>>(await _repo.ObterEnderecoPorCidadeAsync(new FiltroViewModel { Filtro= filtro }));
+            var citys = _mapper.Map<IEnumerable<CityViewModel>>(await _repo.GetCityByFilterAsync(new FiltroViewModel { Filtro= filtro }));
             var result = new DataViewModel
             {
                 citys = citys,
