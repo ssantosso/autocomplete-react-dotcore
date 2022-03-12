@@ -9,7 +9,7 @@ namespace Autocomplete.Business.Models
         public string country { get; set; }
         public string subcountry { get; set; }
         public string geonameid { get; set; }
-        public string Original { get; set; }
+        public string original { get; set; }
         public City()
         {
 
@@ -20,20 +20,31 @@ namespace Autocomplete.Business.Models
             this.country = str[1]; 
             this.subcountry = str[2]; 
             this.geonameid = str[3];
-            this.Original = string.Join(",",str);
+            this.original = string.Join(",",str);
         }
 
         public City(string s)
         {
             var str = s.Split(",");
-            this.Original = s;
+            this.original = s;
             this.name = str[0];
             this.country = str[1];
             this.subcountry = str[2];
             this.geonameid = str[3];
         }
 
-
+        public bool IsOk()
+        {
+            if (string.IsNullOrEmpty(name))
+                return false;
+            if (string.IsNullOrEmpty(country))
+                return false;
+            if (string.IsNullOrEmpty(subcountry))
+                return false;
+            if (string.IsNullOrEmpty(geonameid))
+                return false;
+            return true;
+        }
 
     }
 }

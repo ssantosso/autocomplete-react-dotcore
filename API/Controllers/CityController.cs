@@ -24,14 +24,15 @@ namespace Autocomplete.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<CityViewModel>> Get()
+        public async Task<ActionResult> Get()
         {
             var result = _mapper.Map<IEnumerable<CityViewModel>>(await _repo.ObterEnderecoPorCidadeAsync(new FiltroViewModel()));
-            return result;
+
+            return CustomResponse(result);
         }
 
         [HttpGet("obterporfiltro")]
-        public async Task<DataViewModel> ObterPorFiltro([FromQuery] string filtro)
+        public async Task<ActionResult> ObterPorFiltro([FromQuery] string filtro)
         {
 
             var citys = _mapper.Map<IEnumerable<CityViewModel>>(await _repo.ObterEnderecoPorCidadeAsync(new FiltroViewModel { Filtro= filtro }));
@@ -40,7 +41,7 @@ namespace Autocomplete.Controllers
                 citys = citys,
                 sugestions = citys.Select(x => x.Original)
             };
-            return result;
+            return CustomResponse(result);
         }
     }
 }

@@ -52,7 +52,7 @@ export class CityData extends Component {
                         </thead>
                         <tbody>
                             {this.state.city.map(data =>
-                                <tr key={data.Original}>
+                                <tr key={data.original}>
                                     <td>{data.name}</td>
                                     <td>{data.country}</td>
                                     <td>{data.subcountry}</td>
@@ -70,9 +70,8 @@ export class CityData extends Component {
 
     async populateData(userInput) {
         const response = await fetch('api/v1/city/obterporfiltro?filtro=' + (userInput != undefined && userInput ? userInput : ""));
-        const data = await response.json();
-        this.state = { city: [], loading: true };
-        this.setState({ city: data.citys, loading: false });
+        const result = await response.json();
+        this.setState({ city: result.data.citys, loading: false });
     }
 
 

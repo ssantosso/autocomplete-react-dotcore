@@ -8,7 +8,7 @@ using Autocomplete.Business.Models;
 using Autocomplete.Data.Contexto;
 using Microsoft.EntityFrameworkCore;
 
-namespace Autocomplete.Business.Service
+namespace Autocomplete.Business.Repository
 {
     public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity, new()
     {

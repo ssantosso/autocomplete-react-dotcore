@@ -4,6 +4,7 @@ using Autocomplete.Business.Interface;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Autocomplete.Business.Notificacoes;
+using System.Threading.Tasks;
 
 namespace Autocomplete.Controllers
 {

@@ -1,7 +1,7 @@
 ﻿
 using Autocomplete.Business.Interface;
 using Autocomplete.Business.Notificacoes;
-using Autocomplete.Business.Service;
+using Autocomplete.Business.Repository;
 using Autocomplete.Data.Contexto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;

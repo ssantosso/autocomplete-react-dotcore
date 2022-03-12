@@ -8,26 +8,12 @@ using System.Linq;
 using System.IO;
 using System;
 
-namespace Autocomplete.Business.Service
+namespace Autocomplete.Business.Repository
 {
     public class CityRepository : Repository<City>, ICityRepository
     {
         public CityRepository(MeuDbContext context) : base(context) { }
 
-        public async Task<IEnumerable<City>> ObterPorFiltroAsync(FiltroViewModel filtro)
-        {
-            var files = ObterRegistros();
-
-            var list = await Task.Factory.StartNew(() => files.Select(x => new City(x))
-                    .Where(x =>
-                            string.IsNullOrEmpty(filtro.Filtro) || x.Original.ToLower().Contains(filtro.Filtro.ToLower())
-                        )
-                    .OrderBy(x => x.name)
-
-                .ToList());
-
-            return list;
-        }
 
         public async Task<IEnumerable<City>> ObterEnderecoPorCidadeAsync(FiltroViewModel filtro)
         {
@@ -35,9 +21,9 @@ namespace Autocomplete.Business.Service
 
             var list = await Task.Factory.StartNew(() => files.Select(x => new City(x))
                     .Where(x =>
-                            string.IsNullOrEmpty(filtro.Filtro) || x.Original.ToLower().Contains(filtro.Filtro.ToLower())
+                            string.IsNullOrEmpty(filtro.Filtro) ||(x.IsOk() && x.original.ToLower().Contains(filtro.Filtro.ToLower()))
                         )
-                    .OrderBy(x => x.name)
+                    .OrderBy(x => x.original)
 
                 .Take(50).ToList());
 
@@ -46,9 +32,13 @@ namespace Autocomplete.Business.Service
 
         private IList<string> ObterRegistros()
         {
+
             string path = Path.Combine(Environment.CurrentDirectory, @"world-cities_csv.csv");
+            if (!File.Exists(path))
+                return new List<string>();
+            
             var files = File.ReadAllLines(path);
-            return files.Distinct().Where(x=> !string.IsNullOrEmpty(x)&& x.Split(",").Count()==4).ToList();
+            return files.Distinct().Where(x => !string.IsNullOrEmpty(x) && x.Split(",").Count() == 4).ToList();
         }
     }
 }

@@ -118,10 +118,10 @@ class Autocomplete extends Component {
     }
     async populateAutoComplete(userInput) {
         const response = await fetch('api/v1/city/obterporfiltro?filtro=' + userInput);
-        const data = await response.json();
+        const result = await response.json();
         this.setState({
             activeSuggestion: 0,
-            filteredSuggestions: data.sugestions,
+            filteredSuggestions: result.data.sugestions,
             showSuggestions: true,
             userInput: userInput
         });
