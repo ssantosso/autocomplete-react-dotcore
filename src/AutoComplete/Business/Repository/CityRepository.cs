@@ -19,7 +19,7 @@ namespace Autocomplete.Business.Repository
 
             var list = await Task.Factory.StartNew(() => files.Select(x => new City(x))
                     .Where(x =>
-                            x != null && x.IsOk()
+                            x!=null&&x.IsOk() 
                         )
                     .OrderBy(x => x.original)
 

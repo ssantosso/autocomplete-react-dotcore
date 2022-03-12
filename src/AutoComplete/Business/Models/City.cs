@@ -25,7 +25,11 @@ namespace Autocomplete.Business.Models
 
         public City(string s)
         {
-            var str = s.Split(",");
+            string[] str;
+            if (s.Contains(","))
+                str = s.Split(",");
+            else
+                str = s.Split(";");
             this.original = s;
             this.name = str[0];
             this.country = str[1];
